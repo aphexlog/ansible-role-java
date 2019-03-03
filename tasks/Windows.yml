@@ -1,0 +1,25 @@
+- name: Install Java SE Runtime Environment {{java_version}}
+  win_chocolatey:
+    name: jre{{java_version}}
+    state: present
+
+- name: Obtain information about java_folder
+  win_find:
+    paths: C:\Program Files\Java
+    recurse: no
+    file_type: directory
+  register: java_folder
+
+- name: Parsing java_folder for java_home variable
+  set_fact:
+    win_java_home: "{{ java_folder.files[0].path }}"
+
+- name: Set JAVA_HOME environment variable for all users
+  win_environment:
+    state: present
+    name: JAVA_HOME
+    value: "{{ win_java_home }}"
+    level: machine
+
+- debug:
+    msg: "{{win_java_home}}"
