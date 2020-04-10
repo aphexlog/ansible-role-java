@@ -1,8 +1,9 @@
 ---
 galaxy_info:
+  role_name: java
   author: Aaron W. West
-  description: Ansible Java Playbook Role
-  license: Apache 2
+  description: Java for Linux & Windows
+  license: "license (BSD, MIT)"
   min_ansible_version: 1.2
   #
   # Below are all platforms currently available. Just uncomment
